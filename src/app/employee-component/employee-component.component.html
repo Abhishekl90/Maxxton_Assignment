@@ -1,0 +1,86 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+    <span class="m-l-30">Welcome Admin</span>
+    <div class="spacer"></div>
+
+</div>
+
+<div class="content" role="main">
+    <div>
+        <div class="menu-box">
+            <mat-list>
+                <div mat-subheader>Actions</div>
+                <mat-list-item *ngFor="let item of actionList" (click)="showData(item)">
+                    <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
+                    <div mat-line style="cursor: pointer;">{{item.action}}</div>
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </div>
+
+    <div class="m-t-30">
+        <div class="search-area">
+            <div style="width: 100%;">
+                <span><b>Employee's List</b></span>
+            </div>
+            <div style="display: flex;
+            align-items: center;
+            margin-right: 80px;">
+                <div>
+                    <mat-form-field>
+                        <mat-label>Search by Name</mat-label>
+                        <input matInput [(ngModel)]="searchText">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button mat-button color="primary" (click)="searchEmployeesByName()">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="table-margin">
+            <table id="employees">
+                <tr>
+                    <th>Sr. No</th>
+                    <th>Employee Name</th>
+                    <th>Department</th>
+                    <th>Joining Date</th>
+                </tr>
+                <tbody>
+                    <tr *ngFor="let employee of employeesList;let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>
+                            {{employee.name}}
+                        </td>
+                        <td>
+                            {{employee.department}}
+                        </td>
+                        <td>
+                            {{employee.joining_date}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="showUniqueDept" class="table-margin">
+            <table id="employees">
+                <tr>
+                    <th>Sr. No</th>
+                    <th>Department</th>
+                    <th>Count of Employees</th>
+                </tr>
+                <tbody>
+                    <tr *ngFor="let item of uniqueDeptList;let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>
+                            {{item.dept}}
+                        </td>
+                        <td>
+                            {{item.count.length}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
